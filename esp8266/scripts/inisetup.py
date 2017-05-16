@@ -46,8 +46,20 @@ def setup():
 #import esp
 #esp.osdebug(None)
 import gc
-#import webrepl
-#webrepl.start()
+import webrepl
+import network
+
+gc.collect()
+
+sta_if = network.WLAN(network.STA_IF)
+sta_if.active(True)
+sta_if.connect('MyWifi', 'MyWifiPassword')
+while not sta_if.isconnected():
+    pass
+print('network config:', sta_if.ifconfig())
+
+webrepl.start()
+
 gc.collect()
 """)
     return vfs
