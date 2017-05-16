@@ -53,6 +53,9 @@ import gc
 import webrepl
 import network
 
+# Make reset() command available from command prompt.
+from machine import reset
+
 gc.collect()
 
 webrepl.start()
