@@ -55,14 +55,24 @@ import network
 
 gc.collect()
 
-sta_if = network.WLAN(network.STA_IF)
-sta_if.active(True)
-sta_if.connect('MyWifi', 'MyWifiPassword')
-while not sta_if.isconnected():
-    pass
-print('network config:', sta_if.ifconfig())
-
 webrepl.start()
+
+gc.collect()
+
+if_cli = network.WLAN(network.STA_IF)
+if_cli.active(True)
+if_cli.connect('MyWifi', 'MyWifiPassword')
+
+if_ap = network.WLAN(network.AP_IF)
+
+# Rename to standard names:
+sta_if = if_cli
+ap_if = if_ap
+
+# Function to get IF status.
+def ifstatus():
+    print(if_cli.ifconfig())
+    print(if_ap.ifconfig())
 
 gc.collect()
 """)
