@@ -40,8 +40,12 @@ def setup():
     vfs = uos.VfsFat(bdev)
     uos.mount(vfs, '/flash')
     uos.chdir('/flash')
-    with open("boot.py", "w") as f:
-        f.write("""\
+    with open("webrepl_cfg.py", "w") as f1:
+        f1.write("""\
+PASS = 'micropythoN'
+""")
+    with open("boot.py", "w") as f2:
+        f2.write("""\
 # This file is executed on every boot (including wake-boot from deepsleep)
 #import esp
 #esp.osdebug(None)
